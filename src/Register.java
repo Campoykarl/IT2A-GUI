@@ -62,8 +62,10 @@ public class Register extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         cancel = new javax.swing.JButton();
-        ps = new javax.swing.JPasswordField();
+        cpass = new javax.swing.JPasswordField();
         type = new javax.swing.JComboBox<>();
+        jLabel10 = new javax.swing.JLabel();
+        ps1 = new javax.swing.JPasswordField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,7 +107,7 @@ public class Register extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Bodoni MT", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Type of User:");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, -1, 20));
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 410, -1, 20));
 
         jLabel3.setFont(new java.awt.Font("Bodoni MT", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -152,8 +154,8 @@ public class Register extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("Bodoni MT", 1, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Password:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, 20));
+        jLabel9.setText("Confirm Password:");
+        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 350, -1, 20));
 
         jButton1.setFont(new java.awt.Font("Bodoni MT", 1, 18)); // NOI18N
         jButton1.setText("Register");
@@ -162,7 +164,7 @@ public class Register extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 410, 140, 50));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 490, 140, 50));
 
         cancel.setFont(new java.awt.Font("Bodoni MT", 1, 18)); // NOI18N
         cancel.setText("Cancel");
@@ -171,11 +173,11 @@ public class Register extends javax.swing.JFrame {
                 cancelActionPerformed(evt);
             }
         });
-        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 410, 120, 50));
+        jPanel1.add(cancel, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 490, 120, 50));
 
-        ps.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        ps.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        jPanel1.add(ps, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 380, 40));
+        cpass.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        cpass.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel1.add(cpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 380, 40));
 
         type.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         type.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User", "Admin" }));
@@ -184,9 +186,18 @@ public class Register extends javax.swing.JFrame {
                 typeActionPerformed(evt);
             }
         });
-        jPanel1.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 340, 380, 40));
+        jPanel1.add(type, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 400, 380, 40));
 
-        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 670, 560));
+        jLabel10.setFont(new java.awt.Font("Bodoni MT", 1, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setText("Password:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 300, -1, 20));
+
+        ps1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ps1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        jPanel1.add(ps1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 290, 380, 40));
+
+        jPanel2.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 690, 610));
 
         jLabel1.setFont(new java.awt.Font("Bodoni MT", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -232,19 +243,36 @@ public class Register extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
    
-          if (user.getText().isEmpty() || ps.getText().isEmpty() || address.getText().isEmpty()  || ct.getText().isEmpty() || fna.getText().isEmpty() || lna.getText().isEmpty()) {
+          if (user.getText().isEmpty() || ps1.getText().isEmpty() || address.getText().isEmpty()  || ct.getText().isEmpty() || fna.getText().isEmpty() || lna.getText().isEmpty()) {
           JOptionPane.showMessageDialog(null, "All Fields are required!");
-      } else if (ps.getText().length() < 8) {
+      } else if (ps1.getText().length() < 8) {
           JOptionPane.showMessageDialog(null, "Password should have at least 8 characters.!");
-          ps.setText("");
-      } else if (duplicateCheck()) { // Assuming duplicateCheck() checks for duplicate username
+          ps1.setText("");
+      }else if (ct.getText().length() <11) {
+          JOptionPane.showMessageDialog(null, "Contact number should have at least 11 characters.!");
+          ct.setText("");   
+          
+    } else if (!lna.getText().matches("[a-zA-Z]+")) { 
+    JOptionPane.showMessageDialog(null, "Last name should only contain letters!");
+      } else if (!ct.getText().matches("\\d+")) {
+    JOptionPane.showMessageDialog(null, "Contact number should contain only numbers!");
+    
+   } else if (!fna.getText().matches("[a-zA-Z]+")) { 
+    JOptionPane.showMessageDialog(null, "First name should only contain letters!");
+      } else if (!user.getText().matches("[a-zA-Z]+")) {  
+          JOptionPane.showMessageDialog(null, " username should only contain letters!");
+      }else if (type.getSelectedIndex() == 0){
+          JOptionPane.showMessageDialog(null, "Please select a type of user");
+      }else if(!ps1.getText().equals(cpass.getText())){
+          JOptionPane.showMessageDialog(null,"Password not match!");
+     } else if (duplicateCheck()) { // Assuming duplicateCheck() checks for duplicate username
           System.out.println("Duplicate Exist");
           JOptionPane.showMessageDialog(null, "Username already exists. Please choose a different username.", "Duplicate Username", JOptionPane.WARNING_MESSAGE);
       } else {
 
           dbConnect dbc = new dbConnect();
           int rowsAffected = dbc.insertData("INSERT INTO tbl_user(u_fname, u_lname, u_user, u_pass, u_contact, u_address, u_type, u_status) " +
-                  "VALUES('" + fna.getText() + "','" + lna.getText() + "','" + user.getText() + "', '" + ps.getText() + "', '" + ct.getText() + "','" + address.getText() + "', '" + type.getSelectedItem() + "', 'Pending')");
+                  "VALUES('" + fna.getText() + "','" + lna.getText() + "','" + user.getText() + "', '" + ps1.getText() + "', '" + ct.getText() + "','" + address.getText() + "', '" + type.getSelectedItem() + "', 'Pending')");
 
           if (rowsAffected > 0) {
               JOptionPane.showMessageDialog(null, "Inserted Successfully!");
@@ -256,7 +284,7 @@ public class Register extends javax.swing.JFrame {
               if (rowsAffected == 0) {
                   errorMessage = "Error inserting user. Likely a duplicate entry or other constraint violation.";
               }
-              JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE); // More informative error message and icon
+              JOptionPane.showMessageDialog(null, errorMessage, "Error", JOptionPane.ERROR_MESSAGE);
           }
 }
         
@@ -311,10 +339,12 @@ public class Register extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField address;
     private javax.swing.JButton cancel;
+    private javax.swing.JPasswordField cpass;
     private javax.swing.JTextField ct;
     private javax.swing.JTextField fna;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -325,7 +355,7 @@ public class Register extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField lna;
-    private javax.swing.JPasswordField ps;
+    private javax.swing.JPasswordField ps1;
     private javax.swing.JComboBox<String> type;
     private javax.swing.JTextField user;
     // End of variables declaration//GEN-END:variables
