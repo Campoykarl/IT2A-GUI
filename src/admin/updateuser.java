@@ -5,6 +5,9 @@
  */
 package admin;
 
+import config.dbConnect;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +22,32 @@ public class updateuser extends javax.swing.JFrame {
     public updateuser() {
         initComponents();
     }
-
+       public static String em, username;
+    
+    public boolean duplicateCheck(){
+    
+    dbConnect dbc = new dbConnect();   
+    try{
+           String query = "SELECT * FROM tbl_user  WHERE u_user = '" + user.getText() +  "'";
+            ResultSet resultSet = dbc.getData(query);   
+           
+        if(resultSet.next()){              
+            
+             username = resultSet.getString("u_user");
+             if(username.equals(user.getText())){
+               JOptionPane.showMessageDialog(null,"Username already Exist!");
+               user.setText("");
+               }
+          
+             return true;    
+        }else    
+            return false;
+    }catch(SQLException ex){
+        System.out.println(""+ex);
+        return false;
+    }
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
